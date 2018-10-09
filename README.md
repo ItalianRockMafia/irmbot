@@ -1,2 +1,0 @@
-# irmbot
-IRM telegram bot
