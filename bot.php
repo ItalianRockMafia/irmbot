@@ -25,7 +25,7 @@ $msg = $message['text'];
 if($msg[0] == "/"){
 	switch (true){
 		case stripos($msg, "/events") !== false:
-		$response = "<b>All events:<b>" . chr(10) . chr(10);	
+		$response = "<b>All events:</b>" . chr(10) . chr(10);	
 		$events = json_decode(file_get_contents(IRM_API_ROOT . "events?transform=1&order=startdate,asc"), true);
 			foreach($events['events'] as $event){
 				$date = new DateTime();
@@ -49,7 +49,7 @@ if($msg[0] == "/"){
 				foreach($eventResults['events'] as $event){
 
 				
-				$response = "<b>Found events:<b>" . chr(10) . chr(10);
+				$response = "<b>Found events:</b>" . chr(10) . chr(10);
 				$date = new DateTime();
 
 				$startdate = new DateTime($event['startdate']);
