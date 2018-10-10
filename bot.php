@@ -46,15 +46,16 @@ if($msg[0] == "/"){
 				$res = explode(' ', $msg);
 				$term = $res[1];
 				$eventResults = json_decode(file_get_contents(IRM_API_ROOT . "events?transform=1&order=startdate,asc&filter=event_title,cs," . $term), true);
-				foreach($eventResults['events'] as $event){
+				$response = "<b>Found events:</b>" . chr(10) . chr(10);
+
+			foreach($eventResults['events'] as $event){
 
 				
-				$response = "<b>Found events:</b>" . chr(10) . chr(10);
 				$date = new DateTime();
+				$eventURL = "https://italianrockmafia.ch/meetup/event/" . $event['eventID'];
 
 				$startdate = new DateTime($event['startdate']);
 				$enddate = new DateTime($event['enddate']);
-				$eventURL = "https://italianrockmafia.ch/meetup/event/" . $event['eventID'];
 				if($startdate > $date && $enddate > $date){
 					$response .= $event['event_title'] . chr(10);
 					$response .= $startdate->format('d.m.Y H:i') . chr(10);
