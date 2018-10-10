@@ -8,10 +8,11 @@ require_once "functions/updates.php";
 require_once "functions/telegram.php";
 
 $username = "irmbot";
-
-$update = getUpdates();
-
 $latest = file_get_contents("latest.txt");
+
+
+$update = getUpdates($latest);
+
 if($latest == $update['update_id']){
 	exit("No new updates.");
 }
