@@ -2,6 +2,7 @@
 
 $token = require_once('token.php');
 define("TG_API_ROOT", "https://api.telegram.org/bot" . $token);
+define("IRM_API_ROOT","https://api.italianrockmafia.ch/api.php/");
 
 require_once "functions/updates.php";
 require_once "functions/telegram.php";
@@ -19,6 +20,27 @@ file_put_contents("latest.txt", $update['update_id']);
 
 $message = $update['message'];
 $msg = $message['text'];
+
+if($msg[0] == "/"){
+	switch (true){
+		case stripos($msg, "/events") !== false:
+		$msg2send = "<b>All events:<b>" . chr(10) . chr(10);	
+		$events = json_decode(file_get_contents(IRM_API_ROOT . "events?transform=1&order=startdate,asc"), true);
+			foreach($events as $event){
+				$date = new DateTime();
+
+				$startdate = new DateTime($event['startdate']);
+				$enddate = new DateTime($event['enddate']);
+				if($startdate > $date && $enddate > $date){
+					$msg2send .= $event['event_title'] . chr(10);
+					$msg2send .= $event['startdate'] . chr(10);
+					$msg2send .= $event['station'] . chr(10) . chr(10);
+				}
+			}
+			break;
+		
+	}
+} else{
 
 switch (true) {
 	case stripos($msg, "Bier") !== false:
@@ -80,10 +102,9 @@ switch (true) {
 		# code...
 		break;
 }
-
+}
 $msg2send['chatID'] = $message['chat']['id'];
 $msg2send['text'] = $response;
 
 $result = sendMessage($msg2send);
 
-//file_get_contents("https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $message['chat']['id'] . "&text=" . $response);
