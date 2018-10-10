@@ -1,7 +1,7 @@
 <?php
 
 $token = require_once('token.php');
-define(ATG_PI_ROOT, "https://https://api.telegram.org/bot" . $token);
+define(TG_API_ROOT, "https://https://api.telegram.org/bot" . $token);
 
 require_once "functions/updates.php";
 require_once "functions/telegram.php";
