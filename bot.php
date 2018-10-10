@@ -34,7 +34,7 @@ if($msg[0] == "/"){
 				$enddate = new DateTime($event['enddate']);
 				if($startdate > $date && $enddate > $date){
 					$msg2send .= $event['event_title'] . chr(10);
-					$msg2send .= $startdate . chr(10);
+					$msg2send .= $startdate->format('d.m.Y H:i') . chr(10);
 					$msg2send .= $event['station'] . chr(10) . chr(10);
 				}
 			}
