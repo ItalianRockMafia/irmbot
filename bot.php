@@ -39,6 +39,7 @@ if($msg[0] == "/"){
 					$response .= $event['station'] . chr(10); 
 					$response .= '<a href="' . $eventURL . '">View online</a>'. chr(10) . chr(10);
 				}
+				$response = urlencode($response);
 				$msg2send['parse_mode'] = "HTML";
 			}
 			break;
