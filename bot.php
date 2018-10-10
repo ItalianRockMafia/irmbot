@@ -82,7 +82,7 @@ switch (true) {
 }
 
 $response['chatID'] = $message['chat']['id'];
-$response['text'] = $message['text'];
+$response['text'] = $response;
 
 $result = sendMessage($response);
 
