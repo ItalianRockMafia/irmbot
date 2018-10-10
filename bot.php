@@ -63,7 +63,13 @@ if($msg[0] == "/"){
 				$msg2send['parse_mode'] = "HTML";
 				}
 
-		break;
+			break;
+		case stripos($msg, "/ping") !== false:
+				$response = "pong";
+				break;
+		case stripos($msg, "/echo") !== false:
+				$response = explode(" ", $msg);
+				break;
 		
 	}
 } else{
