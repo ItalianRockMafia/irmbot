@@ -6,6 +6,13 @@ $username = "irmbot";
 
 $update = getUpdates();
 
+$latest = file_get_contents("latest.txt");
+if($latest == $update['update_id']){
+	exit("No new updates.");
+}
+file_put_contents("latest.txt", $update['update_id']);
+
+
 $message = $update['message'];
 $msg = $message['text'];
 
