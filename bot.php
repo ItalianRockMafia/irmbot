@@ -1,7 +1,11 @@
 <?php
 
 $token = require_once('token.php');
+define(ATG_PI_ROOT, "https://https://api.telegram.org/bot" . $token);
+
 require_once "functions/updates.php";
+require_once "functions/telegram.php";
+
 $username = "irmbot";
 
 $update = getUpdates();
@@ -77,4 +81,9 @@ switch (true) {
 		break;
 }
 
-file_get_contents("https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $message['chat']['id'] . "&text=" . $response);
+$response['chatID'] = $message['chat']['id'];
+$response['text'] = $message['text'];
+
+$result = sendMessage($response);
+
+//file_get_contents("https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $message['chat']['id'] . "&text=" . $response);
