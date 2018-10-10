@@ -43,7 +43,8 @@ if($msg[0] == "/"){
 			}
 			break;
 		case stripos($msg, "/event") !== false:
-				$term = explode(' ', $msg);
+				$res = explode(' ', $msg);
+				$term = $res[1];
 				$eventResults = json_decode(file_get_contents(IRM_API_ROOT . "events?transform=1&order=startdate,asc&filter=event_title,cs," . $term), true);
 				foreach($eventResults['events'] as $event){
 
@@ -68,7 +69,8 @@ if($msg[0] == "/"){
 				$response = "pong";
 				break;
 		case stripos($msg, "/echo") !== false:
-				$response = explode(" ", $msg);
+				$split = explode(" ", $msg);
+				$response = $split[1];
 				break;
 		
 	}
