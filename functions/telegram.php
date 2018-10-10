@@ -2,7 +2,7 @@
 
 function sendMessage($message){
 	$chatID  					=	$message['chatID'];
-	$text 	 					=	utf8_encode($message['text']);
+	$text 	 					=	$message['text'];
 	$parse_mode  				=	$message['parse_mode'];
 	$disable_web_page_preview 	=	$message['disable_web_page_preview'];
 	$disable_notification 	 	=	$message['disable_notification'];
