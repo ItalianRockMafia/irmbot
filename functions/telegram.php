@@ -9,7 +9,7 @@ function sendMessage($message){
 	$reply_to_message_id  		=	$message['reply_to_message_id'];
 	$reply_markup 	 			=	$message['reply_markup'];
 
-	$call = TG_API_ROOT . "/sendMessage?chat_id=" . $chatID . "&text=" . $text;
+	$call = TG_API_ROOT . "/sendMessage?chat_id=" . $chatID . "&text=" . urlencode($text);
 	if(isset($parse_mode)){
 		$call .= "&parse_mode=" . $parse_mode;
 	}
