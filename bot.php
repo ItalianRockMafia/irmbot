@@ -32,11 +32,14 @@ if($msg[0] == "/"){
 
 				$startdate = new DateTime($event['startdate']);
 				$enddate = new DateTime($event['enddate']);
+				$eventURL = "https://italianrockmafia.ch/meetup/event/" . $event['eventID'];
 				if($startdate > $date && $enddate > $date){
 					$response .= $event['event_title'] . chr(10);
 					$response .= $startdate->format('d.m.Y H:i') . chr(10);
-					$response .= $event['station'] . chr(10) . chr(10);
+					$response .= $event['station'] . chr(10); 
+					$response .= '<a href="' . $eventURL . '">View online</a>'. chr(10) . chr(10);
 				}
+				$msg2send['parse_mode'] = "HTML";
 			}
 			break;
 		
