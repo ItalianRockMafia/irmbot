@@ -25,7 +25,6 @@ function sendMessage($message){
 	if(isset($reply_markup)){
 		$call .= "&reply_markup" . $reply_markup;
 	}
-
 	$result = file_get_contents($call);
 	return $result;
 }

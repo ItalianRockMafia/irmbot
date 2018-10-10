@@ -81,9 +81,9 @@ switch (true) {
 		break;
 }
 
-$response['chatID'] = $message['chat']['id'];
-$response['text'] = $response;
+$msg['chatID'] = $message['chat']['id'];
+$msg['text'] = $response;
 
-$result = sendMessage($response);
+$result = sendMessage($msg);
 
 //file_get_contents("https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $message['chat']['id'] . "&text=" . $response);
