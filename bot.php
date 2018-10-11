@@ -115,11 +115,11 @@ switch (true) {
 	case stripos($msg, "Feldschlössli") !== false:
 	case stripos($msg, "Feldi") !== false:
 	case stripos($msg, "feldi") !== false:
-		$response = "#TeamMüller";
+		$response = urlencode("#TeamMüller");
 		break;
 	case stripos($msg, "Müller") !== false:
 	case stripos($msg, "müller") !== false:
-		$response = "#TeamFeldi";
+		$response = urlencode("#TeamFeldi");
 		break;
 	case stripos($msg, "Chopfab") !== false:
 	case stripos($msg, "chopfab") !== false:
@@ -153,7 +153,7 @@ switch (true) {
 		break;
 	case stripos($msg, "Hüsser") !== false:
 	case stripos($msg, "hüsser") !== false:
-		$response = "De Hüsser isch wie en Vater für mich...";
+		$response = urlencode("De Hüsser isch wie en Vater für mich...");
 		break;
 	
 	
