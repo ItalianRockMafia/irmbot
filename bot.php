@@ -95,9 +95,9 @@ if($msg[0] == "/"){
 
 		case stripos($msg, "/getAlbum") !== false:
 				$info = explode(' ', $msg);
-				$ablum = $info[1];
-				$artist = $info[2];
-				$callurl = LAST_API_ROOT . "?method=album.getinfo&api_key=" . $lastfmToken . "&album=" . $ablum . "&artist=" . $artist . "&format=json";
+				$ablum = $info[2];
+				$artist = $info[1];
+				$callurl = LAST_API_ROOT . "method=album.getinfo&api_key=" . $lastfmToken . "&album=" . $album . "&artist=" . $artist . "&format=json";
 				$last_album = json_decode(file_get_contents($callurl), true);
 
 				for ($i=0; $i < count($last_album['album']['image']); $i++) { 
