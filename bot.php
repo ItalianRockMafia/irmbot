@@ -112,7 +112,7 @@ if($msg[0] == "/"){
 				  for ($i=0; $i < count($last_album['album']['tracks']['track']); $i++){
 					$response .= $last_album['album']['tracks']['track'][$i]['name'] . chr(10);
 				}
-				$response .= '<a href="' . $last_album['url'] . '">View online</a>';
+				$response .= '<a href="' . $last_album['album']['url'] . '">View online</a>';
 
 				  $pic2send['chatID'] = $message['chat']['id'];
 				  $pic2send['photo'] = $largeImg;
