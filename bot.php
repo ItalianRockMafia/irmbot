@@ -155,6 +155,9 @@ switch (true) {
 	case stripos($msg, "hüsser") !== false:
 		$response = urlencode("De Hüsser isch wie en Vater für mich...");
 		break;
+	case stripos($msg, "metal monday") !== false:
+		$response = "🤘🤘🤘 mentig, 18:30, werkk bade 🤘🤘🤘";
+		break;
 	
 	
 	default:
