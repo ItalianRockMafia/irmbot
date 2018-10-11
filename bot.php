@@ -118,9 +118,10 @@ if($msg[0] == "/"){
 				  $pic2send['photo'] = $largeImg;
 				  $result = sendPhoto($pic2send);
 				  $msg2send['parse_mode'] = "HTML";
+				  $msg2send['disable_web_page_preview'] = true;
 		break;
 		
-
+	
 		case stripos($msg, "/ping") !== false:
 				$response = "pong";
 				break;
