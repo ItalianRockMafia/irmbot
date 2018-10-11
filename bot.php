@@ -85,7 +85,7 @@ if($msg[0] == "/"){
 				$attMembers = json_decode(file_get_contents(IRM_API_ROOT . "eventAttendes?transform=1&filter=eventIDFK,eq," . $eventID), true);
 				$attMsg = "<b>Attendes:</b>" . chr(10);
 				foreach($attMembers['eventAttendes'] as $attende){
-					$attMsg = '<a href="tg://user?id=' . $attende['telegramID'] . '">' . $attende['firstname'] . ' ' . $attende['lastname'] . '</a>' . chr(10);
+					$attMsg .= '<a href="tg://user?id=' . $attende['telegramID'] . '">' . $attende['firstname'] . ' ' . $attende['lastname'] . '</a>' . chr(10);
 				}
 				$response = $eventDetails . $attMsg;
 				$msg2send['parse_mode'] = "HTML";
