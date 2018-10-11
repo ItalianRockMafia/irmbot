@@ -66,6 +66,30 @@ if($msg[0] == "/"){
 				}
 
 			break;
+		case stripos($msg, "/details") !== false:
+				$arr = explode(' ', $msg);
+				$eventID = $arr[1];
+				$events = json_decode(file_get_contents(IRM_API_ROOT . "eventUsers?filter=eventID,eq," . $eventID . "&transform=1"), true);
+				$eventDetails = "<b>Event details:</b>" . chr(10);
+				foreach($events['eventUsers'] as $event){
+					$startdate = new DateTime($event['startdate']);
+					$enddate = new DateTime($event['enddate']);
+					$eventDetails .= $event['event_title'] . chr(10);
+					$eventDetails .= "Start: " . $startdate->format('d.m.Y H:i') .chr(10);
+					$eventDetails .= "End:   " . $enddate->format('d.m.Y H:i') . chr(10);
+					$eventDetails .= 'URL: <a href="' . $event['url'] . '">' . $event['url'] . '</a>' . chr(10);
+					$eventDetails .= "Location: " . $event['station'] . chr(10);
+					$eventDetails .= "Details:" .chr(10) . $event['description'] . chr(10);
+					$eventDetails .= 'Creator: <a href="tg://user?id=' . $event['telegramID'] . '">' . $event['tgusername'] . '</a>'. chr(10) . chr(10);
+				}
+				$attMembers = json_decode(file_get_contents(IRM_API_ROOT . "eventAttendes?transform=1&filter=eventIDFK,eq," . $eventID), true);
+				$attMsg = "<b>Attendes:</b>" . chr(10);
+				foreach($attMembers['eventAttendes'] as $attende){
+					$attMsg = '<a href="tg://user?id=' . $attende['telegramID'] . '">' . $attende['firstname'] . ' ' . $attende['lastname'] . '</a>' . chr(10);
+				}
+				$response = $eventDetails . $attMsg;
+				$msg2send['parse_mode'] = "HTML";
+				break;
 		case stripos($msg, "/ping") !== false:
 				$response = "pong";
 				break;
