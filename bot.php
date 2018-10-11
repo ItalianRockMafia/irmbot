@@ -1,8 +1,10 @@
 <?php
 
 $token = require_once('token.php');
+$lastfmToken = require_once('lastfm.php');
 define("TG_API_ROOT", "https://api.telegram.org/bot" . $token);
 define("IRM_API_ROOT","https://api.italianrockmafia.ch/api.php/");
+define("LAST_API_ROOT", "http://ws.audioscrobbler.com/2.0/?");
 
 require_once "functions/updates.php";
 require_once "functions/telegram.php";
@@ -90,6 +92,28 @@ if($msg[0] == "/"){
 				$response = $eventDetails . $attMsg;
 				$msg2send['parse_mode'] = "HTML";
 				break;
+
+		case stripos($msg, "/getAlbum") !== false:
+				$info = explode(' ', $msg);
+				$ablum = $info[1];
+				$artist = $info[2];
+				$callurl = LAST_API_ROOT . "?method=album.getinfo&api_key=" . $lastfmToken . "&album=" . $ablum . "&artist=" . $artist . "&format=json";
+				$last_album = json_decode(file_get_contents($callurl), true);
+
+				for ($i=0; $i < count($last_album['album']['image']); $i++) { 
+			
+					if($last_album['album']['image'][$i]['size'] == 'extralarge') {
+									$largeImg = "";
+									$largeImg = $last_album['album']['image'][$i]['#text']; 
+					} 
+				  }
+	
+				  $msg2send['chatID'] = $message['chat']['id'];
+				  $msg2send['photo'] = $largeImg;
+				  $result = sendPhoto($msg2send);
+		break;
+		
+
 		case stripos($msg, "/ping") !== false:
 				$response = "pong";
 				break;

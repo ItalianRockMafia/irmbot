@@ -28,3 +28,33 @@ function sendMessage($message){
 	$result = file_get_contents($call);
 	return $result;
 }
+
+function sendPhoto($message){
+	$chatID  					=	$message['chatID'];
+	$photo 	 					=	$message['photo'];
+	$caption					=	$message['caption'];
+	$parse_mode  				=	$message['parse_mode'];
+	$disable_notification 	 	=	$message['disable_notification'];
+	$reply_to_message_id  		=	$message['reply_to_message_id'];
+	$reply_markup 	 			=	$message['reply_markup'];
+
+
+	$call = TG_API_ROOT . "/sendPhoto?chat_id=" . $chatID . "&photo=" . $photo;
+	if(isset($parse_mode)){
+		$call .= "&parse_mode=" . $parse_mode;
+	}
+	if(isset($caption)){
+		$call .= "&caption=" . $caption;
+	}
+	if(isset($disable_notification)){
+		$call .= "&disable_notification=" . $disable_notification;
+	}
+	if(isset($reply_to_message_id)){
+		$call .= "&reply_to_message_id" . $reply_to_message_id;
+	}
+	if(isset($reply_markup)){
+		$call .= "&reply_markup" . $reply_markup;
+	}
+	$result = file_get_contents($call);
+	return $result;
+}
