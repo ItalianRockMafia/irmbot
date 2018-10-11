@@ -107,7 +107,7 @@ if($msg[0] == "/"){
 									$largeImg = $last_album['album']['image'][$i]['#text']; 
 					} 
 				  }
-				  $response = "<b>Album" . $last_album['album']['name'] . " by " .  $last_album['album']['artist'] . chr(10) . chr(10) . "Tracklist:" . chr(10);
+				  $response = "<b>Album" . $last_album['album']['name'] . " by " .  $last_album['album']['artist'] . '</b>' . chr(10) . chr(10) . "Tracklist:" . chr(10);
 
 				  for ($i=0; $i < count($last_album['album']['tracks']['track']); $i++){
 					$response .= $last_album['album']['tracks']['track'][$i]['name'] . chr(10);
@@ -116,6 +116,7 @@ if($msg[0] == "/"){
 				  $pic2send['chatID'] = $message['chat']['id'];
 				  $pic2send['photo'] = $largeImg;
 				  $result = sendPhoto($pic2send);
+				  $msg2send['parse_mode'] = "HTML";
 		break;
 		
 
