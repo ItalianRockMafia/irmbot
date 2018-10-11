@@ -32,7 +32,7 @@ if($msg[0] == "/"){
 
 				$startdate = new DateTime($event['startdate']);
 				$enddate = new DateTime($event['enddate']);
-				$eventURL = "https://italianrockmafia.ch/meetup/event/" . $event['eventID'];
+				$eventURL = "https://italianrockmafia.ch/meetup/event.php?event=" . $event['eventID'];
 				if($startdate > $date && $enddate > $date){
 					$response .= $event['event_title'] . chr(10);
 					$response .= $startdate->format('d.m.Y H:i') . chr(10);
@@ -52,7 +52,7 @@ if($msg[0] == "/"){
 
 				
 				$date = new DateTime();
-				$eventURL = "https://italianrockmafia.ch/meetup/event/" . $event['eventID'];
+				$eventURL = "https://italianrockmafia.ch/meetup/event.php?event=" . $event['eventID'];
 
 				$startdate = new DateTime($event['startdate']);
 				$enddate = new DateTime($event['enddate']);
