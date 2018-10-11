@@ -1,5 +1,5 @@
 <?php
-
+//comment
 $token = require_once('token.php');
 $lastfmToken = require_once('lastfm.php');
 define("TG_API_ROOT", "https://api.telegram.org/bot" . $token);
