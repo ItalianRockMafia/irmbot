@@ -137,6 +137,9 @@ switch (true) {
 	case stripos($msg, "bier") !== false:
 		$response = "🍻";
 		break;
+	case stripos($msg, "🍻") !== false:
+			$response = "🍻🍻🍻";
+			break;
 	case stripos($msg, "Schnupf") !== false:
 		$response = "Priiiiis!!";
 		break;
