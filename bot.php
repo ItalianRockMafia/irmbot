@@ -124,7 +124,7 @@ if($msg[0] == "/"){
 		case stripos($msg, "/server") !== false:
 		$response = "<b>Server details:</b>" . chr(10) . chr(10);
 			foreach($_SERVER as $key => $value){
-				$response .= $key . ": " . $value .chr(10);
+				$response .= $key . ": " . strip_tags($value,'<a><b><i>') .chr(10);
 			}
 			$msg2send['parse_mode'] = "HTML";
 			$msg2send['disable_web_page_preview'] = true;
