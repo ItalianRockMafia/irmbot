@@ -8,6 +8,7 @@ define("LAST_API_ROOT", "http://ws.audioscrobbler.com/2.0/?");
 
 require_once "functions/updates.php";
 require_once "functions/telegram.php";
+require_once "functions/irm.php";
 
 $username = "irmbot";
 $latest = file_get_contents("latest.txt");
@@ -122,12 +123,19 @@ if($msg[0] == "/"){
 		break;
 		
 		case stripos($msg, "/server") !== false:
+		if(checkBotAdmin($message['from']['id'])){
+
+		
 		$response = "<b>Server details:</b>" . chr(10) . chr(10);
 			foreach($_SERVER as $key => $value){
 				$response .= $key . ": " . strip_tags($value,'<a><b><i>') .chr(10);
 			}
 			$msg2send['parse_mode'] = "HTML";
 			$msg2send['disable_web_page_preview'] = true;
+		} else{
+			$response = "Only a bot admin can do that";
+		}
+
 		break;
 
 		case stripos($msg, "/ping") !== false:
