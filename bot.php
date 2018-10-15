@@ -121,7 +121,15 @@ if($msg[0] == "/"){
 			$msg2send['disable_web_page_preview'] = true;
 		break;
 		
-	
+		case stripos($msg, "/server") !== false:
+		$response = "<b>Server details:</b>" . chr(10) . chr(10);
+			foreach($_SERVER as $key => $value){
+				$response .= $key . ": " . $value .chr(10);
+			}
+			$msg2send['parse_mode'] = "HTML";
+			$msg2send['disable_web_page_preview'];
+		break;
+
 		case stripos($msg, "/ping") !== false:
 			$response = "pong";
 		break;
