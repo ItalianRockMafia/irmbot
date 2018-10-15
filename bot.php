@@ -220,9 +220,9 @@ switch (true) {
 }
 
 
-if(!checkBotAccess($tgID)){
+if(checkBotAccess($tgID)){
 	$msg2send['chatID'] = $message['chat']['id'];
-$msg2send['text'] = $response;
+	$msg2send['text'] = $response;
 } else {
 	$msg2send['chatID'] = $message['from']['id'];
 	$msg2send['text'] = "You're banned from using this bot.";
