@@ -11,6 +11,10 @@ require_once "functions/telegram.php";
 require_once "functions/irm.php";
 
 $username = "irmbot";
+
+$bot_is_running = true;
+
+while($bot_is_running){
 $latest = file_get_contents("latest.txt");
 
 
@@ -147,6 +151,13 @@ if($msg[0] == "/"){
 			$response = $split[1];
 		break;
 		
+		case stripos($msg, "/quit") !== false:
+			if(checkBotAdmin($message['from']['id'])){
+				$bot_is_running = false;
+			}else{
+				$response = "Only a bot admin can do that";
+			}
+		break;
 	}
 } else{
 
@@ -229,3 +240,5 @@ if(checkBotAccess($message['from']['id'])){
 
 
 $result = sendMessage($msg2send);
+
+}
