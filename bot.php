@@ -12,9 +12,7 @@ require_once "functions/irm.php";
 
 $username = "irmbot";
 
-$bot_is_running = true;
 
-while($bot_is_running){
 $latest = file_get_contents("latest.txt");
 
 
@@ -240,5 +238,3 @@ if(checkBotAccess($message['from']['id'])){
 
 
 $result = sendMessage($msg2send);
-
-}
