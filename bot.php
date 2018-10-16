@@ -229,7 +229,7 @@ switch (true) {
 	
 	
 	default:
-		# code...
+		$doNotSendMsg = true;
 		break;
 }
 }
@@ -242,5 +242,7 @@ if(checkBotAccess($message['from']['id'])){
 	$msg2send['text'] = "You're banned from using this bot.";
 }
 
+if(!$doNotSendMsg){
+	$result = sendMessage($msg2send);
 
-$result = sendMessage($msg2send);
+}
