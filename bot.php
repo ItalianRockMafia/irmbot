@@ -19,7 +19,8 @@ $latest = file_get_contents("latest.txt");
 
 //$update = getUpdate($latest);
 
-$updates = json_decode(file_get_contents("php://input"), true);
+$data = file_get_contents("php://input");
+$updates = json_decode($data, true);
 $update = getLatestUpdate($updates);
 
 if($latest == $update['update_id']){
