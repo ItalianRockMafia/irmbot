@@ -219,7 +219,7 @@ switch (true) {
 }
 }
 
-if(checkBotAccess($tgID)){
+if(checkBotAccess($message['from']['id'])){
 	$msg2send['chatID'] = $message['chat']['id'];
 	$msg2send['text'] = $response;
 } else {
