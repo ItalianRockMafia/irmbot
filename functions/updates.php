@@ -9,10 +9,8 @@
  * @author Jonas Huesser <j.huesser@domayntec.ch>
  * @since 0.1
  */
-function getUpdates($offset){
+function getLatestUpdate($updates){
 	global $token;
-	$updates = file_get_contents("https://api.telegram.org/bot" . $token . "/getUpdates?offset" . $offset);
-	$updates = json_decode($updates, true);
 	$data = $updates['result'];
 	$lastNMB = count($data)-1;
 	$update= $data[$lastNMB];
