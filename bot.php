@@ -13,16 +13,20 @@ require_once "functions/irm.php";
 $username = "irmbot";
 
 
-$latest = file_get_contents("latest.txt");
+//$latest = file_get_contents("latest.txt");
 
 
-$update = getUpdates($latest);
+
+//$update = getUpdate($latest);
+
+$update = json_decode(file_get_contents("php://input"), true);
 
 if($latest == $update['update_id']){
 	exit("No new updates.");
 }
 
 file_put_contents("latest.txt", $update['update_id']);
+
 
 
 $message = $update['message'];
