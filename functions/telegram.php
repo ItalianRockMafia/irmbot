@@ -1,5 +1,15 @@
 <?php
-
+/**
+ * Send a telegram message
+ * 
+ * calls the telegram Bot API to Send a Telegram message with the options given. Set the option in the array with help of the telegram Bot API reference
+ * 
+ * @param array $message The array with all options the telegram message object can have. 
+ * @return json Result of the Bot-API call
+ * @author Jonas Huesser <j.huesser@domayntec.ch>
+ * @since 0.1
+ * @see https://core.telegram.org/bots/api#sendmessage Fill the array with these option.
+ */
 function sendMessage($message){
 	$chatID  					=	$message['chatID'];
 	$text 	 					=	$message['text'];
@@ -29,6 +39,17 @@ function sendMessage($message){
 	return $result;
 }
 
+/**
+ * Send a telegram photo
+ * 
+ * calls the telegram Bot API to Send a Telegram photo with the options given. Set the option in the array with help of the telegram Bot API reference
+ * 
+ * @param array $message The array with all options the telegram photo object can have. 
+ * @return json Result of the Bot-API call
+ * @author Jonas Huesser <j.huesser@domayntec.ch>
+ * @since 0.1
+ * @see https://core.telegram.org/bots/api#sendphoto Fill the array with these option.
+ */
 function sendPhoto($message){
 	$chatID  					=	$message['chatID'];
 	$photo 	 					=	$message['photo'];
