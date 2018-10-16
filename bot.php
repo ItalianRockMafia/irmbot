@@ -218,7 +218,6 @@ switch (true) {
 		break;
 }
 }
-/*
 
 if(checkBotAccess($tgID)){
 	$msg2send['chatID'] = $message['chat']['id'];
@@ -226,8 +225,7 @@ if(checkBotAccess($tgID)){
 } else {
 	$msg2send['chatID'] = $message['from']['id'];
 	$msg2send['text'] = "You're banned from using this bot.";
-}*/
-$msg2send['chatID'] = $message['chat']['id'];
-	$msg2send['text'] = $response;
+}
+
 
 $result = sendMessage($msg2send);
