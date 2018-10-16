@@ -13,7 +13,7 @@ require_once "functions/irm.php";
 $username = "irmbot";
 
 
-//$latest = file_get_contents("latest.txt");
+$latest = file_get_contents("latest.txt");
 
 
 
