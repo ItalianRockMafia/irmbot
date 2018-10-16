@@ -1,7 +1,7 @@
 #!/bin/bash
 token=$(<token.txt)
 offset=$(<latest.txt)
-updates="`wget -qO- https://api.telegram.org/bot{$token}/getUpdates&offset=$offset`"
+updates="`wget -qO- https://api.telegram.org/bot{$token}/getUpdates`"
 
 wget -q \
  	--method POST \
