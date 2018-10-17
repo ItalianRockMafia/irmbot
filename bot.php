@@ -18,11 +18,10 @@ $latest = file_get_contents("latest.txt");
 
 
 //$update = getUpdate($latest);
-/*
+
 $data = file_get_contents("php://input");
 $updates = json_decode($data, true);
-*/
-$updates = $_POST['updates'];
+
 
 $update = getLatestUpdate($updates);
 
