@@ -10,8 +10,11 @@ updates="`wget --quiet \
 
 wget -q \
  	--method POST \
-	--header 'Content-Type: application/json' \
+	#--header 'Content-Type: application/json' \
+	--header 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+	--header 'Content-Type: application/x-www-form-urlencoded' \
 	--header 'cache-control: no-cache' \
-	--body-data "$updates" \
+	--body-data '------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name="updates" $updates ------WebKitFormBoundary7MA4YWxkTrZu0gW--' \
+	#--body-data "$updates" \
 	--output-document \
 	- http://localhost/irmbot/bot.php
