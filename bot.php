@@ -19,7 +19,7 @@ $latest = file_get_contents("latest.txt");
 $update = getUpdates($latest);
 
 if($latest == $update['update_id']){
-	exit("No new updates.");
+	break;
 }
 
 file_put_contents("latest.txt", $update['update_id']);
@@ -240,3 +240,5 @@ if(checkBotAccess($message['from']['id'])){
 $result = sendMessage($msg2send);
 
 }
+echo json_encode($msg2send);
+sleep(3);

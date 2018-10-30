@@ -1,0 +1,27 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>;
+<script type="text/javascript">
+  function callComplete(response) {
+    $("#textDiv").empty();
+    $("#textDiv").append(response);
+    connect();
+  };
+
+  function connect() {
+    $.post('bot.php', {}, callComplete, 'json');
+  };
+
+  $(document).ready( function() {
+    $("#textDiv").empty();
+    $("#textDiv").append("Latest update");
+    connect();
+  });
+</script>
+</head>
+<body>
+LONG POLLING TEST
+<div id="textDiv" style="width:1000; height:1000; overflow:auto; border:solid 1px black;">
+</div>
+</body>
+</html>
