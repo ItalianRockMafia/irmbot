@@ -11,11 +11,7 @@
  */
 function getUpdates($offset){
 	global $token;
-	$start = date("Y-m-d h:i:s");
 	$updates = file_get_contents("https://api.telegram.org/bot" . $token . "/getUpdates?timeout=60&offset" . $offset);
-	$end = date("Y-m-d h:i:s");
-	$msg = "Start: " . $start . " End: " . $end;
-	file_put_contents("log.txt", $msg, FILE_APPEND);
 	$updates = json_decode($updates, true);
 	$data = $updates['result'];
 	$lastNMB = count($data)-1;

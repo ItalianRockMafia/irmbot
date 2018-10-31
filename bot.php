@@ -15,8 +15,11 @@ $username = "irmbot";
 while(true){
 $latest = file_get_contents("latest.txt");
 
-
+$start = date("Y-m-d h:i:s");
 $update = getUpdates($latest);
+$end = date("Y-m-d h:i:s");
+	$msg = "Start: " . $start . " End: " . $end;
+	file_put_contents("log.txt", $msg, FILE_APPEND);
 
 if($latest == $update['update_id']){
 	break;
