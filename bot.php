@@ -238,6 +238,8 @@ if(checkBotAccess($message['from']['id'])){
 
 
 $result = sendMessage($msg2send);
+
+
+}
 echo json_encode($msg2send);
 sleep(3);
-}
