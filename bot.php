@@ -16,7 +16,7 @@ if (strpos($message, "/ping") === 0) {
 }
 
 if (strpos($message, "bier") !== false || strpos($message, "Bier") !== false){
-    $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode("prost");
+    $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode("🍻");
     $apicall = json_decode(getCall($callURL), true);
 
 
