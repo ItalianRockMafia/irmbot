@@ -18,6 +18,21 @@ if (stripos($message, "bier") !== false){
 
 }
 
+if (stripos($message, "/event") === 0) {
+    if ($update['chat']['type'] == "private") {
+        $eventTitle = substr($message, 7);
+        $eventMsg = "Event Title: " . $eventTitle .chr(10);
+        $keyboard = array();
+        $keyboard['InlineKeyboardMarkup'] = array();
+        $keyboard['InlineKeyboardMarkup']['text'] = "test";
+
+        $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode($eventMsg) . "&reply_markup=" . $keyboard;
+
+    } else {
+        $msg = "Please use this command in private.";
+    }
+
+}
 
 $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode($msg);
 
