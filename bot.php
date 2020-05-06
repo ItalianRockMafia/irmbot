@@ -13,7 +13,7 @@ if (stripos($message, "/ping") === 0) {
 
 }
 
-if (strpos($message, "bier") !== false || strpos($message, "Bier") !== false){
+if (stripos($message, "bier") !== false){
     $msg = "🍻";
 
 }
