@@ -19,7 +19,7 @@ if (stripos($message, "bier") !== false){
 }
 
 if (stripos($message, "/event") === 0) {
-    if ($update['chat']['type'] == "private") {
+    if ($update['message']['chat']['type'] == "private") {
         $eventTitle = substr($message, 7);
         $eventMsg = "Event Title: " . $eventTitle .chr(10);
         $keyboard = array();
