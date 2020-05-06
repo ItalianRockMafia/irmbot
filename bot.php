@@ -25,6 +25,7 @@ if (stripos($message, "/event") === 0) {
         $keyboard = array();
         $keyboard['InlineKeyboardMarkup'] = array();
         $keyboard['InlineKeyboardMarkup']['text'] = "test";
+        $keyboard['InlineKeyboardMarkup']['url'] = "https://italianrockmafia.ch/";
         $buttons = json_encode($keyboard);
 
         $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode($eventMsg) . "&reply_markup=" . $buttons;
