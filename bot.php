@@ -28,7 +28,7 @@ if (stripos($message, "/event") === 0) {
         $keyboard['inline_keyboard'][0] = array();
         $keyboard['inline_keyboard'][0][0]['text'] = "test";
         $keyboard['inline_keyboard'][0][0]['login_url'] = array();
-        $keyboard['inline_keyboard'][0][0]['login_url']['url'] = "https://italianrockmafia.ch/check.php";
+        $keyboard['inline_keyboard'][0][0]['login_url']['url'] = "https://italianrockmafia.ch/check.php?r=https://italianrockmafia.ch/meetup";
         $keyboard['inline_keyboard'][0][0]['login_url']['bot_username'] = "irmbot";
         $keyboard['inline_keyboard'][0][0]['login_url']['request_write_access'] = true;
 
