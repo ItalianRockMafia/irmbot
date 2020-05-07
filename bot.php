@@ -26,8 +26,8 @@ if (stripos($message, "/event") === 0) {
         $keyboard = '{
             "inline_keyboard": [
                     [{
-                           "text": "Edit Event",
-                           "url": "https://italianrockmafia.ch"
+                           "text": "Login to IRM",
+                           "login_url": "https://italianrockmafia.ch/check.php"
                     }]
             ]
     }';
