@@ -27,7 +27,10 @@ if (stripos($message, "/event") === 0) {
         $keyboard['inline_keyboard'] = array();
         $keyboard['inline_keyboard'][0] = array();
         $keyboard['inline_keyboard'][0][0]['text'] = "test";
-        $keyboard['inline_keyboard'][0][0]['url'] = "https://italianrockmafia.ch";
+        $keyboard['inline_keyboard'][0][0]['login_url'] = array();
+        $keyboard['inline_keyboard'][0][0]['login_url']['url'] = "https://italianrockmafia.ch/check.php";
+        $keyboard['inline_keyboard'][0][0]['login_url']['bot_username'] = "irmbot";
+        $keyboard['inline_keyboard'][0][0]['login_url']['request_write_access'] = true;
 
 
        
@@ -42,7 +45,7 @@ if (stripos($message, "/event") === 0) {
     $buttons = json_encode($keyboard);
         
 
-        $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode($eventMsg) . "&reply_markup=" . $buttons;
+        $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode($eventMsg) . "&reply_markup=" . urlencode($buttons);
         file_get_contents($callURL);
 
     } else {
