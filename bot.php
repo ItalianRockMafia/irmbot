@@ -26,12 +26,8 @@ if (stripos($message, "/event") === 0) {
         $keyboard = '{
             "inline_keyboard": [
                     [{
-                           "text": "test1",
-                           "callback_data": "test1"
-                    }],
-                    [{
-                           "text": "test2",
-                           "callback_data": "test2"
+                           "text": "Edit Event",
+                           "url": "https://italianrockmafia.ch"
                     }]
             ]
     }';
