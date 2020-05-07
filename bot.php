@@ -22,19 +22,27 @@ if (stripos($message, "/event") === 0) {
     if ($update['message']['chat']['type'] == "private") {
         $eventTitle = substr($message, 7);
         $eventMsg = "Event Title: " . $eventTitle .chr(10);
+        
+        $keyboard = array();
+        $keyboard['inline_keyboard'] = array();
+        $keyboard['inline_keyboard'][0] = array();
+        $keyboard['inline_keyboard'][0][0]['text'] = "test";
+        $keyboard['inline_keyboard'][0][0]['url'] = "test";
+
+
        
-        $keyboard = '{
+       /* $keyboard = '{
             "inline_keyboard": [
                     [{
                            "text": "Login to IRM",
                            "login_url": "https://italianrockmafia.ch/check.php"
                     }]
             ]
-    }';
-
+    }';*/
+    $buttons = json_encode($keyboard);
         
 
-        $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode($eventMsg) . "&reply_markup=" . urlencode($keyboard);
+        $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode($eventMsg) . "&reply_markup=" . urlencode($buttons);
         file_get_contents($callURL);
 
     } else {
