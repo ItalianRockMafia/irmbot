@@ -23,14 +23,22 @@ if (stripos($message, "/event") === 0) {
         $eventTitle = substr($message, 7);
         $eventMsg = "Event Title: " . $eventTitle .chr(10);
        
-        $keyboard = array();
-        $keyboard['inline_keyboard'] = array();
-        $keyboard['inline_keyboard'][0]['text'] = "test";
-        $keyboard['inline_keyboard'][0]['url'] = "https://italianrockmafia.ch";
+        $keyboard = '{
+            "inline_keyboard": [
+                    [{
+                           "text": "test1",
+                           "callback_data": "test1"
+                    }],
+                    [{
+                           "text": "test2",
+                           "callback_data": "test2"
+                    }]
+            ]
+    }';
 
-        $buttons = json_encode($keyboard);
+        
 
-        $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode($eventMsg) . "&reply_markup=" . $buttons;
+        $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode($eventMsg) . "&reply_markup=" . urlencode($keyboard);
         file_get_contents($callURL);
 
     } else {
