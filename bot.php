@@ -27,7 +27,7 @@ if (stripos($message, "/event") === 0) {
         $keyboard['inline_keyboard'] = array();
         $keyboard['inline_keyboard'][0] = array();
         $keyboard['inline_keyboard'][0][0]['text'] = "test";
-        $keyboard['inline_keyboard'][0][0]['url'] = "test";
+        $keyboard['inline_keyboard'][0][0]['url'] = "https://italianrockmafia.ch";
 
 
        
