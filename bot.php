@@ -42,7 +42,7 @@ if (stripos($message, "/event") === 0) {
     $buttons = json_encode($keyboard);
         
 
-        $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode($eventMsg) . "&reply_markup=" . urlencode($buttons);
+        $callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode($eventMsg) . "&reply_markup=" . $buttons;
         file_get_contents($callURL);
 
     } else {
