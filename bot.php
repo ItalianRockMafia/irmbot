@@ -23,7 +23,13 @@ if (stripos($message, "bier") !== false){
 
 if (stripos($message, "/music") === 0 ){
     $lastfm_user = substr($message, 7);
-    
+    $msg = "Which details from user " . $lastfm_user . " do you want to display?";
+    $keyboard = array();
+        $keyboard['inline_keyboard'] = array();
+        $keyboard['inline_keyboard'][0] = array();
+        $keyboard['inline_keyboard'][0][0]['text'] = "Weekly top songs";
+        $keyboard['inline_keyboard'][1] = array();
+        $keyboard['inline_keyboard'][1][0]['text'] = "Monthly top songs";
 }
 
 if (stripos($message, "/event") === 0) {
