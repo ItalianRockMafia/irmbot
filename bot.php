@@ -1,12 +1,15 @@
 <?php
 $config = require_once 'config.php';
 require_once 'functions/apicalls.php';
+require_once 'functions/irm.php';
 
 $tg_api = "https://api.telegram.org/bot" . $config->token;
 $update = json_decode(file_get_contents("php://input"), TRUE);
 
 $chatId = $update["message"]["chat"]["id"];
 $message = $update["message"]["text"];
+$senderID = $update["message"]["from"]["id"];
+
 
 if (stripos($message, "/ping") === 0) {
     $msg = "pong";
@@ -18,15 +21,23 @@ if (stripos($message, "bier") !== false){
 
 }
 
+if (stripos($message, "/music") === 0 ){
+    $lastfm_user = substr($message, 7);
+    
+}
+
 if (stripos($message, "/event") === 0) {
     if ($update['message']['chat']['type'] == "private") {
         $eventTitle = substr($message, 7);
         $eventMsg = "Event Title: " . $eventTitle .chr(10);
+
+
+
         
         $keyboard = array();
         $keyboard['inline_keyboard'] = array();
         $keyboard['inline_keyboard'][0] = array();
-        $keyboard['inline_keyboard'][0][0]['text'] = "test";
+        $keyboard['inline_keyboard'][0][0]['text'] = "Set start time";
         $keyboard['inline_keyboard'][0][0]['login_url'] = array();
         $keyboard['inline_keyboard'][0][0]['login_url']['url'] = "https://italianrockmafia.ch/check.php?r=https://italianrockmafia.ch/meetup";
         $keyboard['inline_keyboard'][0][0]['login_url']['bot_username'] = "irmbot";
@@ -34,14 +45,6 @@ if (stripos($message, "/event") === 0) {
 
 
        
-       /* $keyboard = '{
-            "inline_keyboard": [
-                    [{
-                           "text": "Login to IRM",
-                           "login_url": "https://italianrockmafia.ch/check.php"
-                    }]
-            ]
-    }';*/
     $buttons = json_encode($keyboard);
         
 
