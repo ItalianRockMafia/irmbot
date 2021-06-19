@@ -17,7 +17,8 @@ if (stripos($message, "/ping") === 0) {
 }
 
 if (stripos($message, "bier") !== false){
-    $msg = "🍻";
+    $responses = array("🍻", "🍺", "Prost!");
+    $msg = $responses[array_rand($responses)];
 
 }
 
