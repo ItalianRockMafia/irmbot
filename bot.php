@@ -16,6 +16,10 @@ if (stripos($message, "/ping") === 0) {
 
 }
 
+if (stripos($message, "/getMyID") === 0){
+	$msg = "Your telegram ID is: " . $senderID;
+}
+
 if (stripos($message, "bier") !== false){
     $responses = array("🍻", "🍺", "Prost!");
     $msg = $responses[array_rand($responses)];
