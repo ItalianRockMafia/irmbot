@@ -20,6 +20,88 @@ if (stripos($message, "/getMyID") === 0){
 	$msg = "Your telegram ID is: " . $senderID;
 }
 
+if (stripos($message, "/subPlexUpdates") === 0){
+	$access = checkBotAccess($senderID);
+    if($access){
+        $postfields = "{\n\t\"plexSubscriber\": 1\n\t\n}";
+        $IRMUser = getIRMUserPropertiesByTelegramID($senderID);
+        $usersURL = $config->api_url . "/users/" . $IRMUser['userID'];
+       $plexUpdateSuccess = putCall($usersURL, $postfields);
+       if(is_numeric($plexUpdateSuccess)) {
+           $msg = "Your Plex Update Subscription is registred.";
+       } else {
+           $msg = "There was an error registring your plex subscription preference.";
+       }
+    } else {
+        $msg = "Please register yourself at https://italianrockmafia.ch first. Thanks.";
+    }
+}
+
+if (stripos($message, "/unsubPlexUpdates") === 0){
+	$access = checkBotAccess($senderID);
+    if($access){
+        $postfields = "{\n\t\"plexSubscriber\": 0\n\t\n}";
+        $IRMUser = getIRMUserPropertiesByTelegramID($senderID);
+        $usersURL = $config->api_url . "/users/" . $IRMUser['userID'];
+       $plexUpdateSuccess = putCall($usersURL, $postfields);
+       if(is_numeric($plexUpdateSuccess)) {
+           $msg = "Your Plex Update Subscription is removed.";
+       } else {
+           $msg = "There was an error removing your plex subscription preference.";
+       }
+    } else {
+        $msg = "Please register yourself at https://italianrockmafia.ch first. Thanks.";
+    }
+}
+
+if (stripos($message, "/publishPlexUpdate") !== false){
+    $AdminAccess = checkBotAdminAccess($senderID);
+    if($AdminAccess) {
+    $IMDBID = substr($message, strpos($message, " ") + 1);
+    $callURL = $config->imdb["api_url"] . "Title/" . $config->imdb['token'] . "/" . $IMDBID . "/Posters,Trailer";
+    $movieInfo = json_decode(file_get_contents($callURL), true);
+
+    switch ($movieInfo['type']) {
+        case 'Movie':
+            $type = "movie";
+        break;
+        case "TVSeries":
+            $type = "series";
+        break;
+        default:
+            $type = "media";
+        break;
+
+    }
+
+
+
+    $captionString = "<b>New " . $type . " added to Plex!</b>" . chr(10) . chr(10) . 
+    "Name: " . $movieInfo['title'] . " (" . $movieInfo['year'] . ")". chr(10) . 
+    "Runtime: " . $movieInfo['runtimeStr'] . chr(10) .
+    "Starring: " . $movieInfo['stars'] . chr(10) . 
+    "Genres: " . $movieInfo['genres'] . chr(10) . chr(10) . 
+    '<a href="' .  $movieInfo['trailer']['link'] . '">View trailer</a>';
+
+    $subscribers = getPlexSubscribers();
+    $Plotmsg = "<b>Plot:</b> " . $movieInfo['plot'];
+    foreach ($subscribers as $subscriber) {
+        $callURL = $tg_api . "/sendPhoto?chat_id=" . $subscriber['telegramID'] . "&caption=" . urlencode($captionString) . "&parse_mode=HTML&photo=" . $movieInfo['image'];
+        $sentMessage = json_decode(getCall($callURL), true);
+        $callURL = $tg_api . "/sendMessage?chat_id=" . $subscriber['telegramID'] . "&parse_mode=HTML&text=" . urlencode($Plotmsg);
+
+        $sentMessage = json_decode(getCall($callURL), true);
+
+    }
+
+    
+
+    
+    } else {
+        $msg = "No access";
+    }
+}
+
 if (stripos($message, "bier") !== false){
     $responses = array("🍻", "🍺", "Prost!");
     $msg = $responses[array_rand($responses)];
@@ -68,6 +150,6 @@ if (stripos($message, "/event") === 0) {
 
 }
 
-$callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&text=" . urlencode($msg);
+$callURL = $tg_api . "/sendMessage?chat_id=" . $chatId . "&parse_mode=HTML&text=" . urlencode($msg);
 
 $sentMessage = json_decode(getCall($callURL), true);

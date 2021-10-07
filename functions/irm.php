@@ -2,9 +2,9 @@
 function checkBotAccess($tgID) {
     global $config;
     $callURL = $config->api_url . "/users?transform=1&filter=telegramID,eq," . $tgID;
-    $user = json_decode(file_get_contents($callURL), true);
+    $users = json_decode(file_get_contents($callURL), true);
 
-    switch ($user['accessIDFK']) {
+    switch ($users['users'][0]['accessIDFK']) {
         case '1':
         case '2':
         case '3':
@@ -29,9 +29,9 @@ function checkBotAccess($tgID) {
 function checkBotAdminAccess($tgID){
     global $config;
     $callURL = $config->api_url . "/users?transform=1&filter=telegramID,eq," . $tgID;
-    $user = json_decode(file_get_contents($callURL), true);
+    $users = json_decode(file_get_contents($callURL), true);
 
-    switch ($user['accessIDFK']) {
+    switch ($users['users'][0]['accessIDFK']) {
         case '1':
         case '2':
         case '3':
@@ -41,11 +41,26 @@ function checkBotAdminAccess($tgID){
         break;
         case '6':
         case '7':
-            $access = false;
+            $access = true;
             break;
         default:
             $access = false;
         break;
     }
+    return $access;
 
+}
+
+function getIRMUserPropertiesByTelegramID($tgID){
+    global $config;
+    $callURL = $config->api_url . "/users?transform=1&filter=telegramID,eq," . $tgID;
+    $user = json_decode(file_get_contents($callURL), true);
+    return $user['users']['0'];
+}
+
+function getPlexSubscribers(){
+    global $config;
+    $callURL  = $config->api_url . "/users?transform=1&filter=plexSubscriber,eq,1";
+    $subscribers = json_decode(file_get_contents($callURL), true);
+    return $subscribers["users"];
 }

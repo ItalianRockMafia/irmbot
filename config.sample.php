@@ -6,5 +6,9 @@ return (object) array(
     'lastfm' => array(
         'token' => "LAST_FM_TOKEN_HERE",
         'api_root' => "https://ws.audioscrobbler.com/"
+    ),
+    'imdb' => array(
+        'token' => "IMDB_API_TOKEN_HERE",
+        'api_url' => "https://imdb-api.com/en/API/"
     )
 );
